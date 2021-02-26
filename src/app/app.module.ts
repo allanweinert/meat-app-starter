@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { PreloadAllModules, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +22,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -46,7 +46,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules }),
     ReactiveFormsModule,
