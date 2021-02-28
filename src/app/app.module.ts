@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './security/login/login.component';
 
 
 
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReviewsComponent,
     OrderSummaryComponent,
     NotFoundComponent,
+    LoginComponent,
 
   ],
   imports: [
