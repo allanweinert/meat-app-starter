@@ -24,6 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/src/app/header/user-detail/user-detail.component';
 
 
 
@@ -43,6 +44,7 @@ import { LoginComponent } from './security/login/login.component';
     OrderSummaryComponent,
     NotFoundComponent,
     LoginComponent,
+    UserDetailComponent,
 
   ],
   imports: [
