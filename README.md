@@ -15,7 +15,7 @@
 `ng serve` ou `npm start`
 
 ## 2. Iniciando o Backend
-
+`nodemon --watch backend backend/dist/server.js`
 ### Instalando o json-server
 
 `npm install -g json-server`
