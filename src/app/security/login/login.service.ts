@@ -4,12 +4,18 @@ import { MEAT_API } from "app/app.api";
 import { Observable } from "rxjs";
 import { User } from "./user.model";
 import { NavigationEnd, Router } from "@angular/router";
+import "rxjs/operator/filter";
 
 @Injectable()
 export class LoginService {
   user: User;
+  lastUrl: string;
 
-  constructor(protected http: HttpClient, private router: Router) {}
+  constructor(protected http: HttpClient, private router: Router) {
+    this.router.events.filter(e => e instanceof NavigationEnd)
+      .subscribe( (e: NavigationEnd) =>  this.lastUrl = e.url)
+    
+  }
 
   isLoggedIn(): boolean {
     return this.user !== undefined;
@@ -28,7 +34,7 @@ export class LoginService {
     this.user = undefined;
   }
 
-  handleLogin(path?: string) {
+  handleLogin(path: string = this.lastUrl) {
     this.router.navigate(["/login", btoa(path)]);
   }
 }
