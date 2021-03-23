@@ -25,7 +25,7 @@ export const ROUTES: Routes = [
         ]},
     {path: 'restaurants', component: RestaurantsComponent},
     {path: 'order', loadChildren: './order/order.module#OrderModule',
-        canLoad: [LoggedinGuard], canActivate: []},
+        canLoad: [LoggedinGuard], canActivate: [LoggedinGuard]},
     {path: 'order-summary', component: OrderSummaryComponent},
     {path: 'about', loadChildren: './about/about.module#AboutModule'},
     {path: '**', component: NotFoundComponent},
