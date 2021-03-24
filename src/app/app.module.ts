@@ -21,13 +21,13 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
 import { ApplicationErrorHandler } from './app.error.handler';
 
-
+registerLocaleData(locatePt, 'pt')
 
 
 @NgModule({
@@ -58,8 +58,12 @@ import { ApplicationErrorHandler } from './app.error.handler';
     SharedModule.forRoot(),
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy }, 
-              {provide: LOCALE_ID, useValue: 'pt-BR'},
+              {provide: LOCALE_ID, useValue: 'pt'},
               {provide: ErrorHandler, useClass: ApplicationErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function locatePt(locatePt: any, arg1: string) {
+  throw new Error('Function not implemented.');
+}
+

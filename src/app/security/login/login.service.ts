@@ -4,7 +4,7 @@ import { MEAT_API } from "app/app.api";
 import { Observable } from "rxjs";
 import { User } from "./user.model";
 import { NavigationEnd, Router } from "@angular/router";
-import "rxjs/operator/filter";
+import "rxjs/add/operator/filter";
 
 @Injectable()
 export class LoginService {
