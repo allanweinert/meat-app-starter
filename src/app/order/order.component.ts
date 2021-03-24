@@ -4,11 +4,13 @@ import {
   FormBuilder,
   Validators,
   AbstractControl,
+  FormControl,
 } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { CartItem } from "app/restaurant-detail/shopping-cart/cart-item.model";
 import { RadioOption } from "app/shared/radio/radio-option.model";
+import { tap } from "rxjs/operators";
 import { Order, OrderItem } from "./order.model";
 
 import { OrderService } from "./order.service";
@@ -40,12 +42,11 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group(
+    this.orderForm = new FormGroup(
       {
-        name: this.formBuilder.control("", [
-          Validators.required,
-          Validators.minLength(5),
-        ]),
+        name: new FormControl("", {
+          validators: [Validators.required, Validators.minLength(5)]
+        }),
         email: this.formBuilder.control("", [
           Validators.required,
           Validators.pattern(this.emailPattern),
@@ -65,7 +66,7 @@ export class OrderComponent implements OnInit {
         optionalAddress: this.formBuilder.control(""),
         paymentOption: this.formBuilder.control("", [Validators.required]),
       },
-      { validator: OrderComponent.equalsTo }
+      { validators: [OrderComponent.equalsTo], updateOn: 'blur' }
     );
   }
 
@@ -111,9 +112,9 @@ export class OrderComponent implements OnInit {
     );
     this.orderService
       .checkOrder(order)
-      .do((orderId: string) => {
+      .pipe(tap((orderId: string) => {
         this.orderId = orderId;
-      })
+      }))
       .subscribe((orderId: string) => {
         this.router.navigate(["/order-summary"]);
         this.orderService.clear();
